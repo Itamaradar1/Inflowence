@@ -1,0 +1,36 @@
+version: '3'
+# declaring the version
+
+services:
+    # giving a name to our service
+  backend:
+    # specifying which image
+    image: inflowence:latest
+    # opening ports which are close by default
+    ports:
+      - 8000:8000
+    # copying the volume from our projects into the container
+    # this allows us to map changes in real time from our application to pur container
+    # without losing data
+    volumes:
+    - ./backend:/backend
+    - ./scripts:/scripts
+
+    env_file:
+      - ./env/dev.env
+
+    command: 'sh /scripts/dev.sh'
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    env_file:
+      - ./env/dev.env
+    ports:
+      - 5555:5432
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+
+volumes:
+  postgres_db:

@@ -1,0 +1,1602 @@
+{
+	"info": {
+		"_postman_id": "ace99e3b-29ff-442e-b03d-89cd212948a8",
+		"name": "Inflowence",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Receive token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setGlobalVariable(\"access\", jsonData.access);\r",
+									"postman.setGlobalVariable(\"refresh\", jsonData.refresh);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"adminadmin\",\r\n    \"email\": \"userTestAlex@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/api/token/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"api",
+								"token",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh JWT token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setGlobalVariable(\"access\", jsonData.access);\r",
+									"postman.setGlobalVariable(\"refresh\", jsonData.refresh);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234567",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "kotikmi@gemuk.buzz",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "refresh",
+									"value": "{{refresh}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/api/auth/token/refresh/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"api",
+								"auth",
+								"token",
+								"refresh",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify JWT token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "alex",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234567",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "kotikmi@gemuk.buzz",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/api/auth/token/verify/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"api",
+								"auth",
+								"token",
+								"verify",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Audience Categories",
+			"item": [
+				{
+					"name": "Get all audience categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/audienceCategories/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"audienceCategories",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an  audience category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Post a new category\",\r\n    \"gender\": 4,\r\n    \"age\": 14,\r\n    \"language\": \"\",\r\n    \"targeted_country\": \"AF\",\r\n    \"description\": \"This is a new category\",\r\n    \"average_spending\": \"aaaaaaaaaaaaaaaaaaa\",\r\n    \"channels\": \"bbbbbbbbbbbbbb\",\r\n    \"influencers\": [],\r\n    \"companies\": [],\r\n    \"campaigns\": []\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/audienceCategories/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"audienceCategories",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an audience category by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/audienceCategories/2/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"audienceCategories",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch an  audience category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\": 64\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/audienceCategories/2/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"audienceCategories",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an audience category by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/audienceCategories/2/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"audienceCategories",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Campaign",
+			"item": [
+				{
+					"name": "Get all campaigns",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/campaign/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"campaign",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a campaign",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Francesco's second campaign\",\r\n    \"budget_amount\": 2,\r\n    \"budget_currency\": 3,\r\n    \"start_date\": \"2022-05-14\",\r\n    \"end_date\": \"2022-05-30\",\r\n    \"location\": \"\",\r\n    \"channels\": \"everything\",\r\n    \"description\": \"aaaaaaaaaaaaaaaaaaa\",\r\n    \"product\": \"aaaaaaaaaaaaaaaaaaaaaaaa\",\r\n    \"language\": \"\",\r\n    \"date_created\": \"2022-04-14\",\r\n    \"company\": 1\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/campaign/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"campaign",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a campaign by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/campaign/2/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"campaign",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch a campaign",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbb\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/campaign/1/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"campaign",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a campaign",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/campaign/1/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"campaign",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "Get all companies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/companies/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"companies",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a company",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Francesco's second company\",\r\n    \"user\": 3,\r\n    \"country\": \"AF\",\r\n    \"marketing_budget\": 10,\r\n    \"company_category\": 2,\r\n    \"size\": 1,\r\n    \"description\": \"aaaaaaaaaaaaaaaaaaa\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/companies/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"companies",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a company by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/companies/1/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"companies",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch a company",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"description\": \"bbbbbbbbbbbbbbbbbbbbbbbb\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/companies/1/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"companies",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete company by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/companies/1/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"companies",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Influencer",
+			"item": [
+				{
+					"name": "Get all influencers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/influencers/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"influencers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an Influencer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"country\": \"ES\",\r\n    \"age\": 35,\r\n    \"gender\": 1,\r\n    \"channels\": \"rrrrrrrrrrrrrrrrrrrrrrrrrr\",\r\n    \"description\": \"rrrrrrrrrrrrrrrrrrrrrrrrrrr\",\r\n    \"language\": \"\",\r\n    \"user\": 3\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/influencers/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"influencers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an Influencer by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/influencers/1/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"influencers",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch an Influencer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"description\": \"ffffffffffffffffffffffffffffffffff\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/influencers/1/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"influencers",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an Influencer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/influencers/2/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"influencers",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Get all Posts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/posts/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"posts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"channel\": \"bbbbbbbbbbbbbbbbbbbb\",\r\n    \"link\": \"bbbbbbbbbbbbbbbbbbbbbb\",\r\n    \"completion\": 2,\r\n    \"author\": 1,\r\n    \"campaign\": 1,\r\n    \"posting_calendar\": 1\r\n    }\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/posts/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"posts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Post by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/posts/1/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"posts",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch a Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"channel\": \"zzzzzzzzzzzzzzzzzzzzzzzzzzz\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/posts/1/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"posts",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/posts/1/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"posts",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PostingCalendar (TO BE DONE)",
+			"item": []
+		},
+		{
+			"name": "Pricing",
+			"item": [
+				{
+					"name": "Get all Pricings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/pricings/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"pricings",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Pricing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"price\": 1000000,\r\n    \"currency\": 5,\r\n    \"charging_method\": \"paypal\",\r\n    \"payement_method\": \"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\",\r\n    \"influencer\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/pricings/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"pricings",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Pricing by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/pricings/1/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"pricings",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch a Pricing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"payement_method\": \"ccccccccccccccccccccccccccccccc\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/pricings/1/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"pricings",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Pricing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/pricings/1/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"pricings",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Register a user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"adminadmin\",\r\n    \"username\": \"userTestAlex\",\r\n    \"email\": \"userTestAlex@email.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/users/registration/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"users",
+								"registration",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate the User",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"adminadmin\",\r\n    \"username\": \"userTestAlex\",\r\n    \"email\": \"userTestAlex@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/users/validation/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"users",
+								"validation",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list all users",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/users/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list a user by email",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/users/search/ita@email.com/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"users",
+								"search",
+								"ita@email.com",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"adminadmin\",\r\n    \"username\": \"newUserAdmin\",\r\n    \"email\": \"newuser@email.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/users/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list user by id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/users/1/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"users",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch a user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"first_name\": \"ttttttttttttttttt\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/users/1/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"users",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user by id (only with token)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://inflowence.propulsion-learn.ch/backend/users/2/",
+							"protocol": "https",
+							"host": [
+								"inflowence",
+								"propulsion-learn",
+								"ch"
+							],
+							"path": [
+								"backend",
+								"users",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,26 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.root,
+#root,
+#docs-root {
+  --primary: #cccfd0;
+  --secondary: #121415;
+  --accent: #dadada;
+  --background: gradient-to-br from-yellow-100 to-blue-200;
+  --main: #0d0106;
+  --header: #2d3748;
+  --bumblebee: #d3a93e;
+  --contentcard: white;
+  --veryLightGrey: rgb(206, 206, 206);
+  --textbg:rgba(28, 28, 28, 0.217);
+}
+
+body {
+  background-image: url('assets/svg/shiny.svg');
+  background-repeat: repeat;
+  background-size: 100vw 220vh;
+  /* background-size: auto; */
+}
